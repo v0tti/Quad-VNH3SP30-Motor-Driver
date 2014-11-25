@@ -2,7 +2,8 @@
 
 // Constructors ////////////////////////////////////////////////////////////////
 
-QuadVNH5019MotorDriver::QuadVNH5019MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, unsigned char B2, unsigned char PWM2,unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4)
+//QuadVNH5019MotorDriver::QuadVNH5019MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, unsigned char B2, unsigned char PWM2,unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4)
+QuadVNH5019MotorDriver::QuadVNH5019MotorDriver(int A1, int B1, int PWM1, int A2, int B2, int PWM2,int A3, int B3, int PWM3, int A4, int B4, int PWM4)
 {
     //Pin map
     _A1 = A1;

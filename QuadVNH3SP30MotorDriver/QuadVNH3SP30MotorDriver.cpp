@@ -187,7 +187,7 @@ void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
     analogWrite(_PWM1,brake);
 }
 // Brake motor 2, brake is a number between 0 and 255
-void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
+void QuadVNH3SP30MotorDriver::setM2Brake(int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -201,7 +201,7 @@ void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
     analogWrite(_PWM2,brake);
 }
 // Brake motor 3, brake is a number between 0 and 255
-void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
+void QuadVNH3SP30MotorDriver::setM3Brake(int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -215,7 +215,7 @@ void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
     analogWrite(_PWM3,brake);
 }
 // Brake motor 4, brake is a number between 0 and 255
-void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
+void QuadVNH3SP30MotorDriver::setM4Brake(int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -230,7 +230,7 @@ void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
 }
 
 // Brake all motors, brake is a number between 0 and 255
-void QuadVNH3SP30MotorDriver::setBrakes(int m1Brake, int m2Brake)
+void QuadVNH3SP30MotorDriver::setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake)
 {
     setM1Brake(m1Brake);
     setM2Brake(m2Brake);

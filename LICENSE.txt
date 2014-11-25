@@ -2,6 +2,7 @@ Copyright (c) 2014 Pololu Corporation.  For more information, see
 
 http://www.pololu.com/
 http://forum.pololu.com/
+edited by Simon Vögele and Alexander Votteler
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

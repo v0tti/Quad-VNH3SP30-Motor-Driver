@@ -1,13 +1,13 @@
-#ifndef QuadVNH5019MotorDriver_h
-#define QuadVNH5019MotorDriver_h
+#ifndef QuadVNH3SP30MotorDriver_h
+#define QuadVNH3SP30MotorDriver_h
 
 #include <Arduino.h>
 
-class QuadVNH5019MotorDriver
+class QuadVNH3SP30MotorDriver
 {
 public:
     // CONSTRUCTORS
-    QuadVNH5019MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, 		unsigned char B2, unsigned char PWM2, unsigned char A3, unsigned char B3, unsigned char 	PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4);
+    QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, 		unsigned char B2, unsigned char PWM2, unsigned char A3, unsigned char B3, unsigned char 	PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4);
     // PUBLIC METHODS
     void init(); // Pinmodes
     void setM1Speed(int speed); // Set speed for M1.

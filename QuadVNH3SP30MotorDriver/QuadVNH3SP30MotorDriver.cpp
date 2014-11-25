@@ -1,9 +1,9 @@
-#include "QuadVNH5019MotorDriver.h"
+#include "QuadVNH3SP30MotorDriver.h"
 
 // Constructors ////////////////////////////////////////////////////////////////
 
-//QuadVNH5019MotorDriver::QuadVNH5019MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, unsigned char B2, unsigned char PWM2,unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4)
-QuadVNH5019MotorDriver::QuadVNH5019MotorDriver(int A1, int B1, int PWM1, int A2, int B2, int PWM2,int A3, int B3, int PWM3, int A4, int B4, int PWM4)
+//QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, unsigned char B2, unsigned char PWM2,unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4)
+QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(int A1, int B1, int PWM1, int A2, int B2, int PWM2,int A3, int B3, int PWM3, int A4, int B4, int PWM4)
 {
     //Pin map
     _A1 = A1;
@@ -21,7 +21,7 @@ QuadVNH5019MotorDriver::QuadVNH5019MotorDriver(int A1, int B1, int PWM1, int A2,
 }
 
 // Public Methods //////////////////////////////////////////////////////////////
-void QuadVNH5019MotorDriver::init()
+void QuadVNH3SP30MotorDriver::init()
 {
     // Define pinMode for the pins
     pinMode(_A1,OUTPUT);
@@ -39,7 +39,7 @@ void QuadVNH5019MotorDriver::init()
 }
 
 // Set speed for motor 1, speed is a number betwenn -255 and 255
-void QuadVNH5019MotorDriver::setM1Speed(int speed)
+void QuadVNH3SP30MotorDriver::setM1Speed(int speed)
 {
     unsigned char reverse = 0;
     
@@ -70,7 +70,7 @@ void QuadVNH5019MotorDriver::setM1Speed(int speed)
     }
 }
 // Set speed for motor2, speed is a number betwenn -255 and 255
-void QuadVNH5019MotorDriver::setM2Speed(int speed)
+void QuadVNH3SP30MotorDriver::setM2Speed(int speed)
 {
     unsigned char reverse = 0;
     
@@ -101,7 +101,7 @@ void QuadVNH5019MotorDriver::setM2Speed(int speed)
     }
 }
 // Set speed for motor 3, speed is a number betwenn -255 and 255
-void QuadVNH5019MotorDriver::setM3Speed(int speed)
+void QuadVNH3SP30MotorDriver::setM3Speed(int speed)
 {
     unsigned char reverse = 0;
     
@@ -132,7 +132,7 @@ void QuadVNH5019MotorDriver::setM3Speed(int speed)
     }
 }
 // Set speed for motor 4, speed is a number betwenn -255 and 255
-void QuadVNH5019MotorDriver::setM4Speed(int speed)
+void QuadVNH3SP30MotorDriver::setM4Speed(int speed)
 {
     unsigned char reverse = 0;
     
@@ -164,7 +164,7 @@ void QuadVNH5019MotorDriver::setM4Speed(int speed)
 }
 
 // Set speed all motors
-void QuadVNH5019MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, int m4Speed)
+void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, int m4Speed)
 {
     setM1Speed(m1Speed);
     setM2Speed(m2Speed);
@@ -173,7 +173,7 @@ void QuadVNH5019MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, in
 }
 
 // Brake motor 1, brake is a number between 0 and 255
-void QuadVNH5019MotorDriver::setM1Brake(int brake)
+void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -187,7 +187,7 @@ void QuadVNH5019MotorDriver::setM1Brake(int brake)
     analogWrite(_PWM1,brake);
 }
 // Brake motor 2, brake is a number between 0 and 255
-void QuadVNH5019MotorDriver::setM1Brake(int brake)
+void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -201,7 +201,7 @@ void QuadVNH5019MotorDriver::setM1Brake(int brake)
     analogWrite(_PWM2,brake);
 }
 // Brake motor 3, brake is a number between 0 and 255
-void QuadVNH5019MotorDriver::setM1Brake(int brake)
+void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -215,7 +215,7 @@ void QuadVNH5019MotorDriver::setM1Brake(int brake)
     analogWrite(_PWM3,brake);
 }
 // Brake motor 4, brake is a number between 0 and 255
-void QuadVNH5019MotorDriver::setM1Brake(int brake)
+void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -230,7 +230,7 @@ void QuadVNH5019MotorDriver::setM1Brake(int brake)
 }
 
 // Brake all motors, brake is a number between 0 and 255
-void QuadVNH5019MotorDriver::setBrakes(int m1Brake, int m2Brake)
+void QuadVNH3SP30MotorDriver::setBrakes(int m1Brake, int m2Brake)
 {
     setM1Brake(m1Brake);
     setM2Brake(m2Brake);

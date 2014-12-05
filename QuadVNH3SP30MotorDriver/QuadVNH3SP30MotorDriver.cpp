@@ -105,10 +105,10 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int analogPin1, int analogPin
  */
 void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, int m4Speed)
 {
-    setMotorSpeed(1, int m1Speed);
-    setMotorSpeed(2, int m2Speed);
-    setMotorSpeed(3, int m3Speed);
-    setMotorSpeed(4, int m4Speed);
+    setMotorSpeed(1, m1Speed);
+    setMotorSpeed(2, m2Speed);
+    setMotorSpeed(3, m3Speed);
+    setMotorSpeed(4, m4Speed);
 }
 
 /*

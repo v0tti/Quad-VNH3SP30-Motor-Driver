@@ -38,7 +38,11 @@ void QuadVNH3SP30MotorDriver::init()
     pinMode(_PWM4,OUTPUT);
 }
 
-// Set speed for motor 1, speed is a number betwenn -255 and 255
+/*
+ * @param   speed   Speed of motor 1
+ *
+ * Set speed for motor 1, speed is a number betwenn -255 and 255
+ */
 void QuadVNH3SP30MotorDriver::setM1Speed(int speed)
 {
     unsigned char reverse = 0;
@@ -69,7 +73,12 @@ void QuadVNH3SP30MotorDriver::setM1Speed(int speed)
         digitalWrite(_B1,LOW);
     }
 }
-// Set speed for motor2, speed is a number betwenn -255 and 255
+
+/*
+ * @param   speed   Speed of motor 2
+ *
+ * Set speed for motor 2, speed is a number betwenn -255 and 255
+ */
 void QuadVNH3SP30MotorDriver::setM2Speed(int speed)
 {
     unsigned char reverse = 0;
@@ -100,7 +109,12 @@ void QuadVNH3SP30MotorDriver::setM2Speed(int speed)
         digitalWrite(_B2,LOW);
     }
 }
-// Set speed for motor 3, speed is a number betwenn -255 and 255
+
+/*
+ * @param   speed   Speed of motor 3
+ *
+ * Set speed for motor 3, speed is a number betwenn -255 and 255
+ */
 void QuadVNH3SP30MotorDriver::setM3Speed(int speed)
 {
     unsigned char reverse = 0;
@@ -131,7 +145,12 @@ void QuadVNH3SP30MotorDriver::setM3Speed(int speed)
         digitalWrite(_B3,LOW);
     }
 }
-// Set speed for motor 4, speed is a number betwenn -255 and 255
+
+/*
+ * @param   speed   Speed of motor 3
+ *
+ * Set speed for motor 3, speed is a number betwenn -255 and 255
+ */
 void QuadVNH3SP30MotorDriver::setM4Speed(int speed)
 {
     unsigned char reverse = 0;
@@ -163,7 +182,14 @@ void QuadVNH3SP30MotorDriver::setM4Speed(int speed)
     }
 }
 
-// Set speed all motors
+/*
+ * @param   m1Speed   Speed of motor 1
+ * @param   m2Speed   Speed of motor 2
+ * @param   m3Speed   Speed of motor 3
+ * @param   m4Speed   Speed of motor 4
+ *
+ * Set speed all motors
+ */
 void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, int m4Speed)
 {
     setM1Speed(m1Speed);
@@ -172,7 +198,11 @@ void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, i
     setM4Speed(m4Speed);
 }
 
-// Brake motor 1, brake is a number between 0 and 255
+/*
+ * @param   brake   Amount of braking
+ *
+ * Brake motor 1, brake is a number between 0 and 255
+ */
 void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
 {
     // normalize brake
@@ -186,7 +216,12 @@ void QuadVNH3SP30MotorDriver::setM1Brake(int brake)
     digitalWrite(_B1, LOW);
     analogWrite(_PWM1,brake);
 }
-// Brake motor 2, brake is a number between 0 and 255
+
+/*
+ * @param   brake   Amount of braking
+ *
+ * Brake motor 2, brake is a number between 0 and 255
+ */
 void QuadVNH3SP30MotorDriver::setM2Brake(int brake)
 {
     // normalize brake
@@ -200,7 +235,12 @@ void QuadVNH3SP30MotorDriver::setM2Brake(int brake)
     digitalWrite(_B2, LOW);
     analogWrite(_PWM2,brake);
 }
-// Brake motor 3, brake is a number between 0 and 255
+
+/*
+ * @param   brake   Amount of braking
+ *
+ * Brake motor 3, brake is a number between 0 and 255
+ */
 void QuadVNH3SP30MotorDriver::setM3Brake(int brake)
 {
     // normalize brake
@@ -214,7 +254,12 @@ void QuadVNH3SP30MotorDriver::setM3Brake(int brake)
     digitalWrite(_B3, LOW);
     analogWrite(_PWM3,brake);
 }
-// Brake motor 4, brake is a number between 0 and 255
+
+/*
+ * @param   brake   Amount of braking
+ *
+ * Brake motor 4, brake is a number between 0 and 255
+ */
 void QuadVNH3SP30MotorDriver::setM4Brake(int brake)
 {
     // normalize brake
@@ -229,7 +274,14 @@ void QuadVNH3SP30MotorDriver::setM4Brake(int brake)
     analogWrite(_PWM4,brake);
 }
 
-// Brake all motors, brake is a number between 0 and 255
+/*
+ * @param   m1Brake   Amount of braking for motor 1
+ * @param   m2Brake   Amount of braking for motor 2
+ * @param   m3Brake   Amount of braking for motor 3
+ * @param   m4Brake   Amount of braking for motor 4
+ *
+ * Brake all motors, brake is a number between 0 and 255
+ */
 void QuadVNH3SP30MotorDriver::setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake)
 {
     setM1Brake(m1Brake);

@@ -39,6 +39,24 @@ void QuadVNH3SP30MotorDriver::init()
 }
 
 /*
+ * @param   motor       Select motor
+ * @param   speed       Speed of motor
+ *
+ * Set speed for one motor, speed is a number betwenn -255 and 255
+ */
+void QuadVNH3SP30MotorDriver::setMotorSpeed(int motor, int speed)
+{
+    if (motor == 1)
+        setPinSpeed(_PWM1, _A1, _B1, speed);
+    if (motor == 2)
+        setPinSpeed(_PWM2, _A2, _B2, speed);
+    if (motor == 3)
+        setPinSpeed(_PWM3, _A3, _B3, speed);
+    if (motor == 4)
+        setPinSpeed(_PWM4, _A4, _B4, speed);
+}
+
+/*
  * @param   pwm         Pulse-width modulation
  * @param   analogPin1  First analog pin
  * @param   analogPin2  Second analog pin
@@ -46,7 +64,7 @@ void QuadVNH3SP30MotorDriver::init()
  *
  * Set speed for any motor, speed is a number betwenn -255 and 255
  */
-void QuadVNH3SP30MotorDriver::setMotorSpeed(int pwm, int analogPin1, int analogPin2, int speed)
+void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int analogPin1, int analogPin2, int speed)
 {
     unsigned char reverse = 0;
     
@@ -87,10 +105,10 @@ void QuadVNH3SP30MotorDriver::setMotorSpeed(int pwm, int analogPin1, int analogP
  */
 void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, int m4Speed)
 {
-    setMotorSpeed(_PWM1, _A1, _B1, int m1Speed);
-    setMotorSpeed(_PWM2, _A2, _B2, int m1Speed);
-    setMotorSpeed(_PWM3, _A3, _B3, int m1Speed);
-    setMotorSpeed(_PWM4, _A4, _B4, int m1Speed);
+    setMotorSpeed(1, int m1Speed);
+    setMotorSpeed(2, int m2Speed);
+    setMotorSpeed(3, int m3Speed);
+    setMotorSpeed(4, int m4Speed);
 }
 
 /*
@@ -101,7 +119,7 @@ void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, i
  *
  * Brake any motor, brake is a number between 0 and 255
  */
-void QuadVNH3SP30MotorDriver::setMotorBrake(int pwm, int analogPin1, int analogPin2, int brake)
+void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int analogPin1, int analogPin2, int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -116,6 +134,24 @@ void QuadVNH3SP30MotorDriver::setMotorBrake(int pwm, int analogPin1, int analogP
 }
 
 /*
+ * @param   motor       Select motor
+ * @param   brake       Brake of motor
+ *
+ * Brake one motor, brake is a number between 0 and 255
+ */
+void QuadVNH3SP30MotorDriver::setMotorBrake(int motor, int brake)
+{
+    if (motor == 1)
+        setPinBrake(_PWM1, _A1, _B1, brake);
+    if (motor == 2)
+        setPinBrake(_PWM2, _A2, _B2, brake);
+    if (motor == 3)
+        setPinBrake(_PWM3, _A3, _B3, brake);
+    if (motor == 4)
+        setPinBrake(_PWM4, _A4, _B4, brake);
+}
+
+/*
  * @param   m1Brake   Amount of braking for motor 1
  * @param   m2Brake   Amount of braking for motor 2
  * @param   m3Brake   Amount of braking for motor 3
@@ -125,8 +161,8 @@ void QuadVNH3SP30MotorDriver::setMotorBrake(int pwm, int analogPin1, int analogP
  */
 void QuadVNH3SP30MotorDriver::setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake)
 {
-    setMotorBrake(_PWM1, _A1, _B1, m1Brake);
-    setMotorBrake(_PWM2, _A2, _B2, m2Brake);
-    setMotorBrake(_PWM3, _A3, _B3, m3Brake);
-    setMotorBrake(_PWM4, _A4, _B4, m4Brake);
+    setMotorBrake(1, m1Brake);
+    setMotorBrake(2, m2Brake);
+    setMotorBrake(3, m3Brake);
+    setMotorBrake(4, m4Brake);
 }

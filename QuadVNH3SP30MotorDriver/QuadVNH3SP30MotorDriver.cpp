@@ -58,13 +58,13 @@ void QuadVNH3SP30MotorDriver::setMotorSpeed(int motor, int speed)
 
 /*
  * @param   pwm         Pulse-width modulation
- * @param   analogPin1  First analog pin
- * @param   analogPin2  Second analog pin
+ * @param   digitalPin1 First analog pin
+ * @param   digitalPin2 Second analog pin
  * @param   speed       Speed of motor
  *
  * Set speed for any motor, speed is a number betwenn -255 and 255
  */
-void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int analogPin1, int analogPin2, int speed)
+void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed)
 {
     unsigned char reverse = 0;
     
@@ -80,18 +80,18 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int analogPin1, int analogPin
     
     if (speed == 0)
     {
-        digitalWrite(analogPin1, LOW);   // Make the motor coast no
-        digitalWrite(analogPin2, LOW);   // matter which direction it is spinning.
+        digitalWrite(digitalPin1, LOW);   // Make the motor coast no
+        digitalWrite(digitalPin2, LOW);   // matter which direction it is spinning.
     }
     else if (reverse)
     {
-        digitalWrite(analogPin1,LOW);
-        digitalWrite(analogPin2,HIGH);
+        digitalWrite(digitalPin1,LOW);
+        digitalWrite(digitalPin2,HIGH);
     }
     else
     {
-        digitalWrite(analogPin1,HIGH);
-        digitalWrite(analogPin2,LOW);
+        digitalWrite(digitalPin1,HIGH);
+        digitalWrite(digitalPin2,LOW);
     }
 }
 
@@ -119,7 +119,7 @@ void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, i
  *
  * Brake any motor, brake is a number between 0 and 255
  */
-void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int analogPin1, int analogPin2, int brake)
+void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake)
 {
     // normalize brake
     if (brake < 0)
@@ -128,8 +128,8 @@ void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int analogPin1, int analogPin
     }
     if (brake > 255)  // Max brake
         brake = 255;
-    digitalWrite(analogPin1, LOW);
-    digitalWrite(analogPin2, LOW);
+    digitalWrite(digitalPin1, LOW);
+    digitalWrite(digitalPin2, LOW);
     analogWrite(pwm, brake);
 }
 

@@ -29,12 +29,12 @@ The Dual VNH5019 Motor Driver Shield from the original Project can be purchased 
 
 - ```void init()```Initialize pinModes and timer1.
 
-- ```void setMotorSpeed(int pwm, int analogPin1, int analogPin2, int speed)```Set speed and direction for any motor. Speed should be between -255 and 255. 255 corresponds to motor current flowing from M1A to M1B. -255 corresponds to motor current flowing from M1B to M1A.  0 corresponds to full coast.
-- ```void setPinSpeed(int pwm, int analogPin1, int analogPin2, int speed);```
+- ```void setMotorSpeed(int pwm, int digitalPin1, int digitalPin2, int speed)```Set speed and direction for any motor. Speed should be between -255 and 255. 255 corresponds to motor current flowing from M1A to M1B. -255 corresponds to motor current flowing from M1B to M1A.  0 corresponds to full coast.
+- ```void setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed);```
 - ```void setSpeeds(int m1Speed, int m2Speed, int m3Speed, int m4Speed)``` Set speed and direction for motor 1, 2, 3 and 4. 
 
-- ```void setMotorBrake(int pwm, int analogPin1, int analogPin2, int brake)```Set brake for any motor. Brake should be between 0 and 255. 0 corresponds to full coast, and 255 corresponds to full brake.
-- ```void setPinBrake(int pwm, int analogPin1, int analogPin2, int brake);```
+- ```void setMotorBrake(int pwm, int digitalPin1, int digitalPin2, int brake)```Set brake for any motor. Brake should be between 0 and 255. 0 corresponds to full coast, and 255 corresponds to full brake.
+- ```void setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake);```
 - ```void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake)```Set brake for motor 1, 2, 3 and 4.
 
 ## Version History

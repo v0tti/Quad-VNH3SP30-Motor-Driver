@@ -25,17 +25,17 @@ The Dual VNH5019 Motor Driver Shield from the original Project can be purchased 
 ## Library Reference
 
 
-- ```QuadVNH3SP30MotorDriver(int A1, int B1, int PWM1, int A2, int B2, int PWM2,int A3, int B3, int PWM3, int A4, int B4, int PWM4)```Default constructor, the pins for each motor are assigned here.
+- ```QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, unsigned char B2, unsigned char PWM2,unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4)```Default constructor, the pins for each motor are assigned here.
 
-- ```void init()```Initialize pinModes and timer1.
+- ```void init()```Initialize pinModes.
 
 - ```void setMotorSpeed(int pwm, int digitalPin1, int digitalPin2, int speed)```Set speed and direction for any motor. Speed should be between -255 and 255. 255 corresponds to motor current flowing from M1A to M1B. -255 corresponds to motor current flowing from M1B to M1A.  0 corresponds to full coast.
 - ```void setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed);```
 - ```void setSpeeds(int m1Speed, int m2Speed, int m3Speed, int m4Speed)``` Set speed and direction for motor 1, 2, 3 and 4. 
 
-- ```void setMotorBrake(int pwm, int digitalPin1, int digitalPin2, int brake,bool hardStop)```Set brake for any motor. Brake should be between 0 and 255. it changes speed to "speed - brake" and do either a hard stop or let it roll out..
-- ```void setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake, bool hardStop);```
-- ```void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake, bool hardStop)```Set brake for motor 1, 2, 3 and 4 and do either a hard stop or let it roll out.
+- ```void setMotorBrake(int pwm, int digitalPin1, int digitalPin2, int brake)```Set brake for any motor. Brake should be between 0 and 255. 0 corresponds to full coast, and 255 corresponds to full brake.
+- ```void setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake);```
+- ```void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake)```Set brake for motor 1, 2, 3 and 4.
 
 ## Version History
 

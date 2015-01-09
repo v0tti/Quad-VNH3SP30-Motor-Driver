@@ -7,7 +7,7 @@ class QuadVNH3SP30MotorDriver
 {
 public:
     // CONSTRUCTORS
-    QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, unsigned char B2, unsigned char PWM2, unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4);
+    QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char iB1, unsigned char PWM1,unsigned char A2, unsigned char B2, unsigned char PWM2, unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4);
     // PUBLIC METHODS
     void init();    // Pinmodes
 
@@ -15,11 +15,12 @@ public:
     void setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed);
     void setSpeeds(int m1Speed, int m2Speed,int m3Speed, int m4Speed);      // Set speed for all Motors.
 
-    void setMotorBrake(int motor, int brake);   // Brake motor.
-    void setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake);
-    void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake);     // Brake all Motors.
+    void setMotorBrake(int motor, int brake, bool hardStop);   // Brake motor.
+    void setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake,bool hardStop);
+    void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake, bool hardStop);     // Brake all Motors.
     
 private:
+    bool _direction;
     unsigned char _A1;
     unsigned char _B1;
     unsigned char _PWM1;

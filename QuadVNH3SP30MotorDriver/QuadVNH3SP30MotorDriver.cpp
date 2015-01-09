@@ -2,12 +2,11 @@
 
 // Constructors ////////////////////////////////////////////////////////////////
 
-//QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char B1, unsigned char PWM1, unsigned char A2, unsigned char B2, unsigned char PWM2,unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4)
-QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(int A1, int B1, int PWM1, int A2, int B2, int PWM2,int A3, int B3, int PWM3, int A4, int B4, int PWM4)
+QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char iB1, unsigned char PWM1, unsigned char A2, unsigned char B2, unsigned char PWM2,unsigned char A3, unsigned char B3, unsigned char PWM3, unsigned char A4, unsigned char B4, unsigned char PWM4)
 {
     //Pin map
     _A1 = A1;
-    _B1 = B1;
+    _B1 = iB1;
     _PWM1 = PWM1;
     _A2 = A2;
     _B2 = B2;
@@ -18,24 +17,25 @@ QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(int A1, int B1, int PWM1, int A
     _A4 = A4;
     _B4 = B4;
     _PWM4 = PWM4;
+    _direction = 1;
 }
 
 // Public Methods //////////////////////////////////////////////////////////////
 void QuadVNH3SP30MotorDriver::init()
 {
-    // Define pinMode for the pins
-    pinMode(_A1,OUTPUT);
-    pinMode(_B1,OUTPUT);
-    pinMode(_PWM1,OUTPUT);
-    pinMode(_A2,OUTPUT);
-    pinMode(_B2,OUTPUT);
-    pinMode(_PWM2,OUTPUT);
-    pinMode(_A3,OUTPUT);
-    pinMode(_B3,OUTPUT);
-    pinMode(_PWM3,OUTPUT);
-    pinMode(_A4,OUTPUT);
-    pinMode(_B4,OUTPUT);
-    pinMode(_PWM4,OUTPUT);
+// Define pinMode for the pins
+  pinMode(_A1,OUTPUT);
+  pinMode(_B1,OUTPUT);
+  pinMode(_PWM1,OUTPUT);
+  pinMode(_A2,OUTPUT);
+  pinMode(_B2,OUTPUT);
+  pinMode(_PWM2,OUTPUT);
+  pinMode(_A3,OUTPUT);
+  pinMode(_B3,OUTPUT);
+  pinMode(_PWM3,OUTPUT);
+  pinMode(_A4,OUTPUT);
+  pinMode(_B4,OUTPUT);
+  pinMode(_PWM4,OUTPUT);
 }
 
 /*
@@ -58,8 +58,8 @@ void QuadVNH3SP30MotorDriver::setMotorSpeed(int motor, int speed)
 
 /*
  * @param   pwm         Pulse-width modulation
- * @param   digitalPin1 First analog pin
- * @param   digitalPin2 Second analog pin
+ * @param   digitalPin1 First digital pin
+ * @param   digitalPin2 Second digital pin
  * @param   speed       Speed of motor
  *
  * Set speed for any motor, speed is a number betwenn -255 and 255
@@ -71,7 +71,7 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalP
     if (speed < 0)
     {
         speed = -speed;  // Make speed a positive quantity
-        reverse = 1;  // Preserve the direction
+        _direction = !_direction;  // Preserve the direction
     }
     if (speed > 255)  // Max PWM dutycycle
         speed = 255;
@@ -83,7 +83,7 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalP
         digitalWrite(digitalPin1, LOW);   // Make the motor coast no
         digitalWrite(digitalPin2, LOW);   // matter which direction it is spinning.
     }
-    else if (reverse)
+    else if (_direction)
     {
         digitalWrite(digitalPin1,LOW);
         digitalWrite(digitalPin2,HIGH);
@@ -113,13 +113,14 @@ void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, i
 
 /*
  * @param   pwm         Pulse-width modulation
- * @param   analogPin1  First analog pin
- * @param   analogPin2  Second analog pin
+ * @param   digitalPin1  First digital pin
+ * @param   digitalPin2  Second digital pin
  * @param   brake       Amount of brake
+ * @param   hardStop    hard stop or lettong it roll
  *
  * Brake any motor, brake is a number between 0 and 255
  */
-void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake)
+void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake,bool hardStop)
 {
     // normalize brake
     if (brake < 0)
@@ -128,27 +129,43 @@ void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalP
     }
     if (brake > 255)  // Max brake
         brake = 255;
-    digitalWrite(digitalPin1, LOW);
-    digitalWrite(digitalPin2, LOW);
-    analogWrite(pwm, brake);
+    if(hardStop){
+        digitalWrite(digitalPin1, HIGH);
+        digitalWrite(digitalPin2, HIGH);
+    }else{
+        digitalWrite(digitalPin1, LOW);
+        digitalWrite(digitalPin2, LOW);
+    }
+    analogWrite(pwm, 255 - brake);
+    if (_direction)
+    {
+        digitalWrite(digitalPin1,LOW);
+        digitalWrite(digitalPin2,HIGH);
+    }
+    else
+    {
+        digitalWrite(digitalPin1,HIGH);
+        digitalWrite(digitalPin2,LOW);
+    }
 }
 
 /*
  * @param   motor       Select motor
  * @param   brake       Brake of motor
+ * @param   hardStop    hard stop or lettong it roll
  *
  * Brake one motor, brake is a number between 0 and 255
  */
-void QuadVNH3SP30MotorDriver::setMotorBrake(int motor, int brake)
+void QuadVNH3SP30MotorDriver::setMotorBrake(int motor, int brake,bool hardStop)
 {
     if (motor == 1)
-        setPinBrake(_PWM1, _A1, _B1, brake);
+        setPinBrake(_PWM1, _A1, _B1, brake, hardStop);
     if (motor == 2)
-        setPinBrake(_PWM2, _A2, _B2, brake);
+        setPinBrake(_PWM2, _A2, _B2, brake, hardStop);
     if (motor == 3)
-        setPinBrake(_PWM3, _A3, _B3, brake);
+        setPinBrake(_PWM3, _A3, _B3, brake, hardStop);
     if (motor == 4)
-        setPinBrake(_PWM4, _A4, _B4, brake);
+        setPinBrake(_PWM4, _A4, _B4, brake, hardStop);
 }
 
 /*
@@ -156,13 +173,14 @@ void QuadVNH3SP30MotorDriver::setMotorBrake(int motor, int brake)
  * @param   m2Brake   Amount of braking for motor 2
  * @param   m3Brake   Amount of braking for motor 3
  * @param   m4Brake   Amount of braking for motor 4
+ * @param   hardStop  hard stop or lettong it roll
  *
  * Brake all motors, brake is a number between 0 and 255
  */
-void QuadVNH3SP30MotorDriver::setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake)
+void QuadVNH3SP30MotorDriver::setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake,bool hardStop)
 {
-    setMotorBrake(1, m1Brake);
-    setMotorBrake(2, m2Brake);
-    setMotorBrake(3, m3Brake);
-    setMotorBrake(4, m4Brake);
+    setMotorBrake(1, m1Brake, hardStop);
+    setMotorBrake(2, m2Brake, hardStop);
+    setMotorBrake(3, m3Brake, hardStop);
+    setMotorBrake(4, m4Brake, hardStop);
 }

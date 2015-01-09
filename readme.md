@@ -33,9 +33,9 @@ The Dual VNH5019 Motor Driver Shield from the original Project can be purchased 
 - ```void setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed);```
 - ```void setSpeeds(int m1Speed, int m2Speed, int m3Speed, int m4Speed)``` Set speed and direction for motor 1, 2, 3 and 4. 
 
-- ```void setMotorBrake(int pwm, int digitalPin1, int digitalPin2, int brake)```Set brake for any motor. Brake should be between 0 and 255. 0 corresponds to full coast, and 255 corresponds to full brake.
-- ```void setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake);```
-- ```void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake)```Set brake for motor 1, 2, 3 and 4.
+- ```void setMotorBrake(int pwm, int digitalPin1, int digitalPin2, int brake,bool hardStop)```Set brake for any motor. Brake should be between 0 and 255. it changes speed to "speed - brake" and do either a hard stop or let it roll out..
+- ```void setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake, bool hardStop);```
+- ```void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake, bool hardStop)```Set brake for motor 1, 2, 3 and 4 and do either a hard stop or let it roll out.
 
 ## Version History
 

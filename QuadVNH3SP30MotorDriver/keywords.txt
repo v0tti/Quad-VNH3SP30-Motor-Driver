@@ -1,13 +1,9 @@
-QuadVNH5019MotorDriver	KEYWORD1
+QuadVNH3SP30MotorDriver	KEYWORD1
 
 init	KEYWORD2
-setM1Speed	KEYWORD2
-setM2Speed	KEYWORD2
+setPinSpeed	KEYWORD2
+setMotorSpeed	KEYWORD2
 setSpeeds	KEYWORD2
-setM1Brake	KEYWORD2
-setM2Brake	KEYWORD2
+setPinBrake	KEYWORD2
+setMotorBrake	KEYWORD2
 setBrakes	KEYWORD2
-getM1CurrentMilliamps	KEYWORD2
-getM2CurrentMilliamps	KEYWORD2
-getM1Fault	KEYWORD2
-getM2Fault	KEYWORD2

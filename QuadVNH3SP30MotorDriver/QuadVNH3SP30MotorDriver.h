@@ -20,6 +20,7 @@ public:
     void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake, bool hardStop);     // Brake all Motors.
     
 private:
+    int _currentSpeed;
     bool _direction;
     unsigned char _A1;
     unsigned char _B1;

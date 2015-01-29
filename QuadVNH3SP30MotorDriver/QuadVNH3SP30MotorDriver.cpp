@@ -18,6 +18,7 @@ QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char
     _B4 = B4;
     _PWM4 = PWM4;
     _direction = 1;
+    _currentSpeed = 0
 }
 
 // Public Methods //////////////////////////////////////////////////////////////
@@ -93,6 +94,7 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalP
         digitalWrite(digitalPin1,HIGH);
         digitalWrite(digitalPin2,LOW);
     }
+    _currentSpeed = speed
 }
 
 /*
@@ -120,7 +122,7 @@ void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, i
  *
  * Brake any motor, brake is a number between 0 and 255
  */
-void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake,bool hardStop)
+void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake, bool hardStop)
 {
     // normalize brake
     if (brake < 0)
@@ -136,7 +138,7 @@ void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalP
         digitalWrite(digitalPin1, LOW);
         digitalWrite(digitalPin2, LOW);
     }
-    analogWrite(pwm, 255 - brake);
+    analogWrite(pwm, _currentSpeed - brake);
     if (_direction)
     {
         digitalWrite(digitalPin1,LOW);

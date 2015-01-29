@@ -18,7 +18,7 @@ QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char
     _B4 = B4;
     _PWM4 = PWM4;
     _direction = 1;
-    _currentSpeed = 0
+    _currentSpeed = 0;
 }
 
 // Public Methods //////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalP
         digitalWrite(digitalPin1,HIGH);
         digitalWrite(digitalPin2,LOW);
     }
-    _currentSpeed = speed
+    _currentSpeed = speed;
 }
 
 /*

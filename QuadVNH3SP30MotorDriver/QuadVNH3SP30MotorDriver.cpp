@@ -77,7 +77,14 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalP
     if (speed > 255)  // Max PWM dutycycle
         speed = 255;
     
-    analogWrite(pwm, speed);
+    speed = speed - currentSpeed;
+    int i = speed / 20;
+    int r = speed % 20;
+    for(i;i>0;i--){
+        analogWrite(pwm ,speed + 20);
+        delay(100);
+    }
+    analogWrite(pwm, speed+ r);
     
     if (speed == 0)
     {

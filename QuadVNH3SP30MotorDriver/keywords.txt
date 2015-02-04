@@ -1,6 +1,6 @@
 QuadVNH3SP30MotorDriver	KEYWORD1
 
-init	KEYWORD2
+init		KEYWORD2
 setPinSpeed	KEYWORD2
 setMotorSpeed	KEYWORD2
 setSpeeds	KEYWORD2

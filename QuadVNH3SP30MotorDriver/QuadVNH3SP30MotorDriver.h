@@ -12,15 +12,18 @@ public:
     void init();    // Pinmodes
 
     void setMotorSpeed(int motor, int speed);   // Set speed for motor.
-    void setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed);
+    void setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed,int currentSpeed);
     void setSpeeds(int m1Speed, int m2Speed,int m3Speed, int m4Speed);      // Set speed for all Motors.
 
-    void setMotorBrake(int motor, int brake, bool hardStop);   // Brake motor.
-    void setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake,bool hardStop);
-    void setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake, bool hardStop);     // Brake all Motors.
+    void setMotorBrake(int motor, bool hardStop);   // Brake motor.
+    void setPinBrake(int pwm, int digitalPin1, int digitalPin2, bool hardStop);
+    void setBrakes(bool hardStop);     // Brake all Motors.
     
 private:
-    int _currentSpeed;
+    int _currentSpeedM1;
+    int _currentSpeedM2;
+    int _currentSpeedM3;
+    int _currentSpeedM4;
     bool _direction;
     unsigned char _A1;
     unsigned char _B1;

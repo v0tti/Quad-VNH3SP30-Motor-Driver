@@ -9,5 +9,5 @@ void setup() {
 void loop() {
     md->setSpeeds(255,255,255,255);
     delay(500);
-    md->setBrakes(0,0,0,0, 0); 
+    md->setBrakes(0); 
 }

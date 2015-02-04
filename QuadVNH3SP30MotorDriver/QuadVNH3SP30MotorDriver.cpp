@@ -18,7 +18,10 @@ QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char
     _B4 = B4;
     _PWM4 = PWM4;
     _direction = 1;
-    _currentSpeed = 0;
+    _currentSpeedM1 = 0;
+    _currentSpeedM2 = 0;
+    _currentSpeedM3 = 0;
+    _currentSpeedM4 = 0;
 }
 
 // Public Methods //////////////////////////////////////////////////////////////
@@ -48,13 +51,13 @@ void QuadVNH3SP30MotorDriver::init()
 void QuadVNH3SP30MotorDriver::setMotorSpeed(int motor, int speed)
 {
     if (motor == 1)
-        setPinSpeed(_PWM1, _A1, _B1, speed);
+        setPinSpeed(_PWM1, _A1, _B1, speed, _currentSpeedM1);
     if (motor == 2)
-        setPinSpeed(_PWM2, _A2, _B2, speed);
+        setPinSpeed(_PWM2, _A2, _B2, speed, _currentSpeedM2);
     if (motor == 3)
-        setPinSpeed(_PWM3, _A3, _B3, speed);
+        setPinSpeed(_PWM3, _A3, _B3, speed, _currentSpeedM3);
     if (motor == 4)
-        setPinSpeed(_PWM4, _A4, _B4, speed);
+        setPinSpeed(_PWM4, _A4, _B4, speed, _currentSpeedM4);
 }
 
 /*
@@ -65,7 +68,7 @@ void QuadVNH3SP30MotorDriver::setMotorSpeed(int motor, int speed)
  *
  * Set speed for any motor, speed is a number betwenn -255 and 255
  */
-void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed)
+void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalPin2, int speed, int currentSpeed)
 {
     unsigned char reverse = 0;
     
@@ -81,7 +84,7 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalP
     int i = speed / 20;
     int r = speed % 20;
     for(i;i>0;i--){
-        analogWrite(pwm ,speed + 20);
+        analogWrite(pwm ,currentSpeed + 20);
         delay(100);
     }
     analogWrite(pwm, speed+ r);
@@ -101,7 +104,14 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalP
         digitalWrite(digitalPin1,HIGH);
         digitalWrite(digitalPin2,LOW);
     }
-    _currentSpeed = speed;
+    if(pwm==_PWM1)
+        _currentSpeedM1 = speed;
+    else if(pwm==_PWM2)
+        _currentSpeedM2 = speed;
+    else if(pwm==_PWM3)
+        _currentSpeedM3 = speed;
+    else if(pwm==_PWM4)
+        _currentSpeedM4 = speed;
 }
 
 /*
@@ -124,20 +134,12 @@ void QuadVNH3SP30MotorDriver::setSpeeds(int m1Speed, int m2Speed, int m3Speed, i
  * @param   pwm         Pulse-width modulation
  * @param   digitalPin1  First digital pin
  * @param   digitalPin2  Second digital pin
- * @param   brake       Amount of brake
  * @param   hardStop    hard stop or lettong it roll
  *
- * Brake any motor, brake is a number between 0 and 255
+ * Brake any motor, speed is set to 0
  */
-void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalPin2, int brake, bool hardStop)
+void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalPin2, bool hardStop)
 {
-    // normalize brake
-    if (brake < 0)
-    {
-        brake = -brake;
-    }
-    if (brake > 255)  // Max brake
-        brake = 255;
     if(hardStop){
         digitalWrite(digitalPin1, HIGH);
         digitalWrite(digitalPin2, HIGH);
@@ -145,7 +147,7 @@ void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalP
         digitalWrite(digitalPin1, LOW);
         digitalWrite(digitalPin2, LOW);
     }
-    analogWrite(pwm, _currentSpeed - brake);
+    analogWrite(pwm, 0);
     if (_direction)
     {
         digitalWrite(digitalPin1,LOW);
@@ -156,40 +158,45 @@ void QuadVNH3SP30MotorDriver::setPinBrake(int pwm, int digitalPin1, int digitalP
         digitalWrite(digitalPin1,HIGH);
         digitalWrite(digitalPin2,LOW);
     }
+    if(pwm==_PWM1)
+        _currentSpeedM1 = 0;
+    else if(pwm==_PWM2)
+        _currentSpeedM2 = 0;
+    else if(pwm==_PWM3)
+        _currentSpeedM3 = 0;
+    else if(pwm==_PWM4)
+        _currentSpeedM4 = 0;
+
 }
 
 /*
  * @param   motor       Select motor
- * @param   brake       Brake of motor
  * @param   hardStop    hard stop or lettong it roll
  *
- * Brake one motor, brake is a number between 0 and 255
+ * Brake one motor, speed is set to 0
  */
-void QuadVNH3SP30MotorDriver::setMotorBrake(int motor, int brake,bool hardStop)
+void QuadVNH3SP30MotorDriver::setMotorBrake(int motor,bool hardStop)
 {
     if (motor == 1)
-        setPinBrake(_PWM1, _A1, _B1, brake, hardStop);
+        setPinBrake(_PWM1, _A1, _B1, hardStop);
     if (motor == 2)
-        setPinBrake(_PWM2, _A2, _B2, brake, hardStop);
+        setPinBrake(_PWM2, _A2, _B2, hardStop);
     if (motor == 3)
-        setPinBrake(_PWM3, _A3, _B3, brake, hardStop);
+        setPinBrake(_PWM3, _A3, _B3, hardStop);
     if (motor == 4)
-        setPinBrake(_PWM4, _A4, _B4, brake, hardStop);
+        setPinBrake(_PWM4, _A4, _B4, hardStop);
 }
 
 /*
- * @param   m1Brake   Amount of braking for motor 1
- * @param   m2Brake   Amount of braking for motor 2
- * @param   m3Brake   Amount of braking for motor 3
- * @param   m4Brake   Amount of braking for motor 4
  * @param   hardStop  hard stop or lettong it roll
  *
- * Brake all motors, brake is a number between 0 and 255
+ * Brake all motors, speed is set to 0
  */
-void QuadVNH3SP30MotorDriver::setBrakes(int m1Brake, int m2Brake, int m3Brake, int m4Brake,bool hardStop)
+void QuadVNH3SP30MotorDriver::setBrakes(bool hardStop)
 {
-    setMotorBrake(1, m1Brake, hardStop);
-    setMotorBrake(2, m2Brake, hardStop);
-    setMotorBrake(3, m3Brake, hardStop);
-    setMotorBrake(4, m4Brake, hardStop);
+    setMotorBrake(1, hardStop);
+    setMotorBrake(2, hardStop);
+    setMotorBrake(3, hardStop);
+    setMotorBrake(4, hardStop);
 }
+

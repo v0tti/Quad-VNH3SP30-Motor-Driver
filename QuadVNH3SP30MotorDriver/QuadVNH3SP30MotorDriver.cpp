@@ -72,23 +72,23 @@ void QuadVNH3SP30MotorDriver::setPinSpeed(int pwm, int digitalPin1, int digitalP
 {
     unsigned char reverse = 0;
     
-    if (speed < 0)
+    if (speed > 0 & !_direction)
+    {
+        _direction = !_direction;  // Preserve the direction
+    }
+    if (speed < 0 & _direction)
     {
         speed = -speed;  // Make speed a positive quantity
         _direction = !_direction;  // Preserve the direction
     }
+    if (speed < 0)
+        {
+            speed = -speed;  // Make speed a positive quantity
+        }
     if (speed > 255)  // Max PWM dutycycle
         speed = 255;
     
-    speed = speed - currentSpeed;
-    int i = speed / 20;
-    int r = speed % 20;
-    for(i;i>0;i--){
-        analogWrite(pwm ,currentSpeed + 20);
-        delay(100);
-    }
-    analogWrite(pwm, speed+ r);
-    
+    analogWrite(pwm, speed);
     if (speed == 0)
     {
         digitalWrite(digitalPin1, LOW);   // Make the motor coast no

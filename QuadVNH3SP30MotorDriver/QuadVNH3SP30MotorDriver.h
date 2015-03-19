@@ -25,7 +25,7 @@ private:
     int _currentSpeedM3;
     int _currentSpeedM4;
     bool _direction;
-    unsigned char _A1;
+    /*unsigned char _A1;
     unsigned char _B1;
     unsigned char _PWM1;
     unsigned char _A2;
@@ -36,7 +36,19 @@ private:
     unsigned char _PWM3;
     unsigned char _A4;
     unsigned char _B4;
-    unsigned char _PWM4;
+    unsigned char _PWM4;*/
+    int _A1;
+    int _B1;
+    int _PWM1;
+    int _A2;
+    int _B2;
+    int _PWM2;
+    int _A3;
+    int _B3;
+    int _PWM3;
+    int _A4;
+    int _B4;
+    int _PWM4;
 };
 
 #endif

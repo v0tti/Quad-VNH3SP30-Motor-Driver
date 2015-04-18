@@ -188,7 +188,7 @@ void QuadVNH3SP30MotorDriver::setMotorBrake(int motor,bool hardStop)
 }
 
 /*
- * @param   hardStop  hard stop or lettong it roll
+ * @param   hardStop  hard stop or letting it roll
  *
  * Brake all motors, speed is set to 0
  */
@@ -199,4 +199,25 @@ void QuadVNH3SP30MotorDriver::setBrakes(bool hardStop)
     setMotorBrake(3, hardStop);
     setMotorBrake(4, hardStop);
 }
+
+
+
+//
+void QuadVNH3SP30MotorDriver::driveTurn(int turn, int speed){
+    if(speed>0){
+        if(turn>0){
+            setSpeeds(speed+turn, speed+turn, speed/2, speed/2);
+        }else if(turn<0){
+            setSpeeds(speed/2, speed/2, speed-turn, speed-turn);
+        }
+    }else if(speed<0){
+        if(turn>0){
+            setSpeeds((speed/2), (speed/2), (speed-turn), (speed-turn));
+        }else if(turn<0){
+            setSpeeds((speed+turn), (speed+turn), (speed/2), (speed/2));
+        }
+    }
+}
+//
+
 

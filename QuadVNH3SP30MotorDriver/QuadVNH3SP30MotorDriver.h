@@ -19,6 +19,12 @@ public:
     void setPinBrake(int pwm, int digitalPin1, int digitalPin2, bool hardStop);
     void setBrakes(bool hardStop);     // Brake all Motors.
     
+    
+    //
+    void driveTurn(int turn, int speed);
+    //
+    
+    
 private:
     int _currentSpeedM1;
     int _currentSpeedM2;

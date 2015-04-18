@@ -36,7 +36,7 @@ The Dual VNH5019 Motor Driver Shield from the original Project can be purchased 
 - ```void setMotorBrake(int pwm, int digitalPin1, int digitalPin2, bool hardstop)```Set brake for any motor. speed is set to 0
 - ```void setPinBrake(int pwm, int digitalPin1, int digitalPin2, bool hardstop);```
 - ```void setBrakes(bool hardstop)```Set brake for motor 1, 2, 3 and 4.
-
+- ```void driveTurn(int turn, int speed)```Steers by setting speed of 2 motors to speed/2 and the other two to speed+turn
 ## Version History
 
 From Polulu Project:

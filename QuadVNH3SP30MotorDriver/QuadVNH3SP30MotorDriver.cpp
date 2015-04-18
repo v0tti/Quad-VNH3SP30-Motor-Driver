@@ -27,19 +27,19 @@ QuadVNH3SP30MotorDriver::QuadVNH3SP30MotorDriver(unsigned char A1, unsigned char
 // Public Methods //////////////////////////////////////////////////////////////
 void QuadVNH3SP30MotorDriver::init()
 {
-// Define pinMode for the pins
-  pinMode(_A1,OUTPUT);
-  pinMode(_B1,OUTPUT);
-  pinMode(_PWM1,OUTPUT);
-  pinMode(_A2,OUTPUT);
-  pinMode(_B2,OUTPUT);
-  pinMode(_PWM2,OUTPUT);
-  pinMode(_A3,OUTPUT);
-  pinMode(_B3,OUTPUT);
-  pinMode(_PWM3,OUTPUT);
-  pinMode(_A4,OUTPUT);
-  pinMode(_B4,OUTPUT);
-  pinMode(_PWM4,OUTPUT);
+    // Define pinMode for the pins
+    pinMode(_A1,OUTPUT);
+    pinMode(_B1,OUTPUT);
+    pinMode(_PWM1,OUTPUT);
+    pinMode(_A2,OUTPUT);
+    pinMode(_B2,OUTPUT);
+    pinMode(_PWM2,OUTPUT);
+    pinMode(_A3,OUTPUT);
+    pinMode(_B3,OUTPUT);
+    pinMode(_PWM3,OUTPUT);
+    pinMode(_A4,OUTPUT);
+    pinMode(_B4,OUTPUT);
+    pinMode(_PWM4,OUTPUT);
 }
 
 /*
@@ -200,9 +200,12 @@ void QuadVNH3SP30MotorDriver::setBrakes(bool hardStop)
     setMotorBrake(4, hardStop);
 }
 
-
-
-//
+/*
+ * @param   turn    sterring itensity
+ * @param   speed   speed to drive
+ *
+ * steers by setting speed of 2 motors to speed/2 and the other two to speed+turn
+ */
 void QuadVNH3SP30MotorDriver::driveTurn(int turn, int speed){
     if(speed>0){
         if(turn>0){
@@ -218,6 +221,4 @@ void QuadVNH3SP30MotorDriver::driveTurn(int turn, int speed){
         }
     }
 }
-//
-
 

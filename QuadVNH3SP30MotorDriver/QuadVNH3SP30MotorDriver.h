@@ -19,10 +19,7 @@ public:
     void setPinBrake(int pwm, int digitalPin1, int digitalPin2, bool hardStop);
     void setBrakes(bool hardStop);     // Brake all Motors.
     
-    
-    //
     void driveTurn(int turn, int speed);
-    //
     
     
 private:
@@ -31,18 +28,6 @@ private:
     int _currentSpeedM3;
     int _currentSpeedM4;
     bool _direction;
-    /*unsigned char _A1;
-    unsigned char _B1;
-    unsigned char _PWM1;
-    unsigned char _A2;
-    unsigned char _B2;
-    unsigned char _PWM2;
-    unsigned char _A3;
-    unsigned char _B3;
-    unsigned char _PWM3;
-    unsigned char _A4;
-    unsigned char _B4;
-    unsigned char _PWM4;*/
     int _A1;
     int _B1;
     int _PWM1;

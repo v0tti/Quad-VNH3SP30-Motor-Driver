@@ -7,3 +7,4 @@ setSpeeds	KEYWORD2
 setPinBrake	KEYWORD2
 setMotorBrake	KEYWORD2
 setBrakes	KEYWORD2
+driveTurn	KEYWORD2
